@@ -3,16 +3,18 @@ import {Box} from '@mui/material';
 import {IContact} from 'src/models/IContact';
 import {AccountCircle} from '@mui/icons-material';
 import {AVATAR, CONTACT, DEFAULT_AVATAR} from './styles';
+import {grey} from '@mui/material/colors';
 
 interface IContactProps {
   data: IContact;
+  isActive: boolean;
 }
 
 const Contact = (props: IContactProps) => {
-  const {data} = props;
+  const {data, isActive} = props;
 
   return (
-    <Box sx={CONTACT}>
+    <Box sx={{...CONTACT, backgroundColor: isActive ? grey[200] : undefined}}>
       <Box sx={AVATAR}>
         <AccountCircle sx={DEFAULT_AVATAR} />
       </Box>

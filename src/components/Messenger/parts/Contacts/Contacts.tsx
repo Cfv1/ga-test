@@ -1,23 +1,38 @@
 import React, {memo} from 'react';
-import {Box} from '@mui/material';
+import {Box, Tab, Tabs} from '@mui/material';
 import AddContactSection from './AddContactSection/AddContactSection';
-import {useAppSelector} from 'src/store/helpers/hooks/useAppSelector';
-import {selectContacts} from 'src/store/reducers/contact/contactSelectors';
 import Contact from './Contact/Contact';
+import {IContact} from 'src/models/IContact';
 import {CONTACTS_CONTAINER, CONTACTS_ROOT} from './styles';
 
-const Contacts = () => {
-  const contacts = useAppSelector(selectContacts);
+interface IContactsProps {
+  data: IContact[];
+  onSelect(index: number): void;
+  currentContactIndex?: number;
+}
+
+const Contacts = (props: IContactsProps) => {
+  const {onSelect, data, currentContactIndex} = props;
 
   return (
     <Box width="30%" sx={CONTACTS_ROOT}>
-      <Box sx={CONTACTS_CONTAINER}>
-        {contacts.map(contact => (
-          <Contact key={contact.id} data={contact}/>
-        ))}
-
-        <AddContactSection mode={contacts.length === 0 ? 'simple' : 'small'} />
-      </Box>
+      {data.length > 0 && (
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={currentContactIndex}
+          onChange={(event, value) => onSelect(value)}
+          sx={CONTACTS_CONTAINER}
+          TabIndicatorProps={{style: {backgroundColor: "transparent"}}}
+        >
+          {data.map((contact, index) => (
+            <Tab key={contact.id} sx={{padding: 0}} label={
+              <Contact key={contact.id} isActive={currentContactIndex === index} data={contact}/>
+            }/>
+          ))}
+        </Tabs>
+      )}
+      <AddContactSection mode={data.length === 0 ? 'simple' : 'small'} />
     </Box>
   )
 }

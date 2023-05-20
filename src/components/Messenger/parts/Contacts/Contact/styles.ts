@@ -8,7 +8,8 @@ export const CONTACT = {
   cursor: 'pointer',
   ':hover': {
     background: grey[200]
-  }
+  },
+  width: '100%',
 }
 
 export const AVATAR = {

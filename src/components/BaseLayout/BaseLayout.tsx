@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import Header from 'src/components/Header/Header';
 import {Box} from '@mui/material';
-import {CONTENT} from 'src/components/BaseLayout/styles';
+import {CONTENT} from './styles';
 
 const BaseLayout = (props: React.PropsWithChildren) => {
   const {children} = props;

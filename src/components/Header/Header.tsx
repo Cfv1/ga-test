@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import {AppBar, Container, Toolbar} from '@mui/material';
-import {HEADER_ROOT} from 'src/components/Header/styles';
+import {HEADER_ROOT} from './styles';
 
 const Header = () => {
   return (

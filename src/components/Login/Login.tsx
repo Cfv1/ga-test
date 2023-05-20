@@ -1,14 +1,15 @@
 import React, {memo, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {Box, Button, Stack, TextField} from '@mui/material';
+
 import BaseLayout from '../BaseLayout/BaseLayout';
-import {FORM, LOGIN_BUTTON} from 'src/components/Login/styles';
 import {useSuccessCommunication} from 'src/common/helpers/hooks/useSuccessCommunication';
 import {useErrorCommunication} from 'src/common/helpers/hooks/useErrorCommunication';
 import {useAppDispatch} from 'src/store/helpers/hooks/useAppDispatch';
 import {useAppSelector} from 'src/store/helpers/hooks/useAppSelector';
 import {selectCommunication} from 'src/store/reducers/account/accountSelectors';
 import {getAccountState} from 'src/store/services/account';
-import {useNavigate} from 'react-router-dom';
+import {FORM, LOGIN_BUTTON} from './styles';
 
 const Login = () => {
   const [idInstance, setIdInstance] = useState('');

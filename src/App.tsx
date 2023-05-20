@@ -1,8 +1,14 @@
 import React from 'react';
-import Dashboard from 'src/components/Dashboard/Dashboard';
+import BaseRoutes from 'src/components/BaseRoutes/BaseRoutes';
+import {ThemeProvider} from '@mui/material';
+import {theme} from 'src/common/theme';
 
 function App() {
-  return <Dashboard />
+  return (
+    <ThemeProvider theme={theme}>
+      <BaseRoutes />
+    </ThemeProvider>
+  )
 }
 
 export default App;

@@ -1,8 +1,11 @@
 import React, {memo} from 'react';
+import BaseLayout from 'src/components/BaseLayout/BaseLayout';
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <BaseLayout>
+      Dashboard
+    </BaseLayout>
   )
 }
 

@@ -1,18 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from 'src/store/store';
+import SnackbarProvider from 'src/components/common/Snackbar/SnackbarProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <SnackbarProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </SnackbarProvider>
   </Provider>
 );
 

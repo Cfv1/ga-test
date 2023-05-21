@@ -24,7 +24,7 @@ export const createMessage = (state: IChatState, data: INotification, sender: Me
         ? messageData.textMessageData!.textMessage
         : messageData.extendedTextMessageData!.text
   } else {
-    message.text = '**Нераспознанное сообщение :(**'
+    message.text = '** Нераспознанное сообщение :( **'
   }
 
   if(chat) {

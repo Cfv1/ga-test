@@ -1,32 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {receiveNotification} from 'src/store/services/message';
 import {IChat} from 'src/models/IChat';
-import {INotification, MessageDataType, WebhookType} from 'src/models/INotification';
-import {IMessage, MessageOwnership} from 'src/models/IMessage';
+import {WebhookType} from 'src/models/INotification';
+import {MessageOwnership} from 'src/models/IMessage';
 import {IContact} from 'src/models/IContact';
 import {createContactWithId} from 'src/store/helpers/creators/contact';
+import {createMessage} from 'src/store/reducers/chat/helpers';
 
-const saveMessage = (chat: IChat, message: IMessage) => {
-  const newMessage = chat.messages.find(i => i.id === message.id);
-  !newMessage && chat.messages.push(message);
-}
-
-const createMessage = (state: IChatState, data: INotification, sender: MessageOwnership) => {
-  const chatId = data.body.senderData!.chatId;
-  const chat = state.chats.find(chat => chat.chatId === chatId)!;
-  const message: IMessage = {
-    id: data.body.idMessage,
-    text:
-      data.body.messageData.typeMessage === MessageDataType.TEXT_MESSAGE
-        ? data.body.messageData.textMessageData!.textMessage
-        : data.body.messageData.extendedTextMessageData!.text,
-    ownership: sender
-  }
-
-  saveMessage(chat, message);
-}
-
-interface IChatState {
+export interface IChatState {
   chats: IChat[]
 }
 

@@ -25,9 +25,10 @@ const AddContactModal = (props: IAddContactModalProps) => {
   }
 
   const setPhoneHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const text = event.target.value;
-    setPhoneError(text.length > 0 ? !isCorrectPhone : false);
-    setPhone(text);
+    const text = event.target.value
+    const phoneWithoutSpaces = text.split(' ').join('');
+    setPhoneError(phoneWithoutSpaces.length > 0 ? !isCorrectPhone : false);
+    setPhone(phoneWithoutSpaces);
   }
 
   const onSuccessHandler = () => {

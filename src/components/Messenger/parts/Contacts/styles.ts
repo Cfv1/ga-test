@@ -5,12 +5,19 @@ export const CONTACTS_ROOT = {
   justifyContent: 'center',
   alignItems: 'center',
   background: common.white,
-  position: 'relative'
+  position: 'relative',
+  flexDirection: 'column'
 }
 
 export const CONTACTS_CONTAINER = {
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  height: '97%'
+  height: '97%',
+}
+
+export const TAB = {
+  padding: 0,
+  opacity: 1,
+  maxWidth: 'none',
 }

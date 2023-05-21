@@ -2,25 +2,14 @@ import {grey} from '@mui/material/colors';
 import {theme} from 'src/common/theme';
 import {hexToRgba} from 'src/common/helpers/hexToRgba';
 
-const contact_default = {
+export const STRUCTURE_DEFAULT = {
   display: 'flex',
   alignItems: 'center',
   width: '100%',
+  height: '40px',
   borderBottom: `1px solid ${grey[200]}`,
   padding: '5px 0',
-  cursor: 'pointer',
-}
-
-export const CONTACT = {
-  ...contact_default,
-  ':hover': {
-    backgroundColor: hexToRgba(theme.palette.background.default, 0.4),
-  },
-}
-
-export const CONTACT_ACTIVE = {
-  ...contact_default,
-  backgroundColor: theme.palette.background.default
+  backgroundColor: theme.palette.background.default,
 }
 
 export const AVATAR = {

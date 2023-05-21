@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IContact} from 'src/models/IContact';
-import {generateId} from 'src/common/helpers/generateId';
+import {generateChatId} from 'src/common/helpers/generateChatId';
 import {IContactInfo} from 'src/models/IContactInfo';
 
 interface IContactState {
@@ -17,7 +17,7 @@ const ContactSlice = createSlice({
   reducers: {
     createContact: (state, action: PayloadAction<IContactInfo>) => {
       const data = action.payload;
-      state.contacts.push({...data, id: generateId()})
+      state.contacts.push({...data, chatId: generateChatId(data.phone)});
     }
   },
 });

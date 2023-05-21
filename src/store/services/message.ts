@@ -1,7 +1,7 @@
 import API from 'src/store/services/base/axios';
 import {createAppAsyncThunk} from 'src/store/helpers/createAppAsyncThunk';
 
-export const sendMessage = createAppAsyncThunk("message/sendMessage", async (_, {rejectWithValue, getState}) => {
+export const sendMessage = createAppAsyncThunk()("message/sendMessage", async (_, {rejectWithValue, getState}) => {
   const {accountReducer} = getState();
   const {account} = accountReducer;
 
@@ -13,7 +13,7 @@ export const sendMessage = createAppAsyncThunk("message/sendMessage", async (_, 
   }
 });
 
-export const receiveNotification = createAppAsyncThunk("message/receiveNotification", async (_, {rejectWithValue, getState}) => {
+export const receiveNotification = createAppAsyncThunk()("message/receiveNotification", async (_, {rejectWithValue, getState}) => {
   const {accountReducer} = getState();
   const {account} = accountReducer;
 
@@ -25,12 +25,12 @@ export const receiveNotification = createAppAsyncThunk("message/receiveNotificat
   }
 });
 
-export const deleteNotification = createAppAsyncThunk("message/deleteNotification", async (_, {rejectWithValue, getState}) => {
+export const deleteNotification = createAppAsyncThunk<number>()("message/deleteNotification", async (messageId: number, {rejectWithValue, getState}) => {
   const {accountReducer} = getState();
   const {account} = accountReducer;
 
   try {
-    const response = await API.delete(`/waInstance${account?.idInstance}/DeleteNotification/${account?.apiTokenInstance}`);
+    const response = await API.delete(`/waInstance${account?.idInstance}/DeleteNotification/${account?.apiTokenInstance}/${messageId}`);
     return response.data;
   } catch (error) {
     return rejectWithValue('Не удалось загрузить');

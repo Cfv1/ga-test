@@ -1,9 +1,10 @@
+import {common} from '@mui/material/colors';
+
 import {
   CORNER_DEFAULT,
   MESSAGE_DEFAULT,
   MESSAGE_ROOT_DEFAULT
-} from 'src/components/Messenger/parts/Chat/parts/Messages/Message/common/styles';
-import {common} from '@mui/material/colors';
+} from '../common/styles';
 
 const color = common.white;
 

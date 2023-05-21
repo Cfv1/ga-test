@@ -1,9 +1,10 @@
 import React, {ChangeEvent, memo, useState} from 'react';
 import {Box, TextField} from '@mui/material';
-import {FOOTER, MESSAGE_FIELD} from './styles';
+
 import {ChatProps} from 'src/components/Messenger/parts/Chat/Chat';
 import {useAppDispatch} from 'src/store/helpers/hooks/useAppDispatch';
 import {sendMessage} from 'src/store/services/message';
+import {FOOTER, MESSAGE_FIELD} from './styles';
 
 const Footer = (props: ChatProps) => {
   const {contact} = props;

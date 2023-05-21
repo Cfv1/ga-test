@@ -1,13 +1,11 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import Dialog from '@mui/material/Dialog/Dialog';
-import {Box, Button, DialogActions, DialogTitle, Stack, TextField, Tooltip} from '@mui/material';
-import {IContactInfo} from 'src/models/IContactInfo';
-import {FORM, PHONE_HELP_ICON, PHONE_LABEL} from './styles';
 import HelpIcon from '@mui/icons-material/Help';
+import {Box, Button, DialogActions, DialogTitle, Stack, TextField, Tooltip} from '@mui/material';
 
-const isForMobilePhone = (text: string): boolean => {
-  return /^[\d]+$/.test(text);
-}
+import {IContactInfo} from 'src/models/IContactInfo';
+import {isCorrectPhone} from 'src/common/helpers/isForPhone';
+import {FORM, PHONE_HELP_ICON, PHONE_LABEL} from './styles';
 
 interface IAddContactModalProps {
   isOpen: boolean;
@@ -28,8 +26,7 @@ const AddContactModal = (props: IAddContactModalProps) => {
 
   const setPhoneHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const text = event.target.value;
-    const error = !isForMobilePhone(text) || text.length > 11 || text?.[0] !== '7';
-    setPhoneError(text.length > 0 ? error : false);
+    setPhoneError(text.length > 0 ? !isCorrectPhone : false);
     setPhone(text);
   }
 
@@ -53,6 +50,16 @@ const AddContactModal = (props: IAddContactModalProps) => {
       </Box>
     )
   }
+
+  useEffect(() => {
+    if(!isOpen) {
+      setPhone('');
+      setName('');
+      setPhoneError(false)
+    }
+  }, [isOpen]);
+
+  const isDisabledButton = phoneError || name.length === 0 || phone.length === 0;
 
   return (
     <Dialog open={isOpen}>
@@ -85,7 +92,7 @@ const AddContactModal = (props: IAddContactModalProps) => {
 
       <DialogActions>
         <Button onClick={onCancel} color="error">Отмена</Button>
-        <Button onClick={onSuccessHandler} disabled={phoneError} color="primary">Да</Button>
+        <Button onClick={onSuccessHandler} disabled={isDisabledButton} color="primary">Да</Button>
       </DialogActions>
     </Dialog>
   )

@@ -1,6 +1,6 @@
 import {Box} from '@mui/material';
 import React, {memo, useEffect} from 'react';
-import {CHAT_CONTAINER} from './styles';
+
 import {IContact} from 'src/models/IContact';
 import Header from 'src/components/Messenger/parts/Chat/parts/Header/Header';
 import Footer from 'src/components/Messenger/parts/Chat/parts/Footer/Footer';
@@ -8,6 +8,7 @@ import Messages from 'src/components/Messenger/parts/Chat/parts/Messages/Message
 import {useAppDispatch} from 'src/store/helpers/hooks/useAppDispatch';
 import {deleteNotification, receiveNotification} from 'src/store/services/message';
 import {INotification} from 'src/models/INotification';
+import {CHAT_CONTAINER} from './styles';
 
 interface IChatProps {
   contact?: IContact;

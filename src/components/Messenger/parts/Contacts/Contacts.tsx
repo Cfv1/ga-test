@@ -1,9 +1,10 @@
 import React, {memo} from 'react';
 import {Box, Tab, Tabs, Typography} from '@mui/material';
+
 import AddContactSection from './AddContactSection/AddContactSection';
 import Contact from './Contact/Contact';
 import {IContact} from 'src/models/IContact';
-import {CONTACTS_CONTAINER, CONTACTS_ROOT, TAB} from './styles';
+import {CONTACTS_CONTAINER, CONTACTS_ROOT, CONTACTS_TITLE, TAB} from './styles';
 
 interface IContactsProps {
   data: IContact[];
@@ -18,8 +19,10 @@ const Contacts = (props: IContactsProps) => {
     <Box width="30%" sx={CONTACTS_ROOT}>
       {data.length > 0 && (
         <>
-          <Box sx={{padding: '9px 0'}}>
-            <Typography variant="h6" align="center">Ваши контакты:</Typography>
+          <Box sx={CONTACTS_TITLE}>
+            <Typography variant="h6" align="center">
+              Ваши контакты:
+            </Typography>
           </Box>
 
           <Tabs

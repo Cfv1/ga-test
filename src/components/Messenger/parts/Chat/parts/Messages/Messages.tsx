@@ -1,16 +1,17 @@
 import React, {memo, useEffect, useMemo} from 'react';
 import {Box} from '@mui/material';
-import OwnMessage from 'src/components/Messenger/parts/Chat/parts/Messages/Message/OwnMessage/OwnMessage';
-import ForeignMessage from 'src/components/Messenger/parts/Chat/parts/Messages/Message/ForeignMessage/ForeignMessage';
+
 import {MessageOwnership} from 'src/models/IMessage';
 import {ChatProps} from 'src/components/Messenger/parts/Chat/Chat';
 import {useAppSelector} from 'src/store/helpers/hooks/useAppSelector';
 import {selectChats} from 'src/store/reducers/chat/chatSelectors';
+import {scrollToBottom} from 'src/common/helpers/scrollToBottom';
+import OwnMessage from '../Messages/Message/OwnMessage/OwnMessage';
+import ForeignMessage from '../Messages/Message/ForeignMessage/ForeignMessage';
 import {
   MESSAGES_CONTAINER,
   SCROLLABLE_MESSAGES_CONTAINER
 } from './styles';
-import {scrollToBottom} from 'src/common/helpers/scrollToBottom';
 
 const Messages = (props: ChatProps) => {
   const {contact} = props;

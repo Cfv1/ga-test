@@ -1,5 +1,6 @@
 import React, {memo, useCallback, useState} from 'react';
 import {Box, useMediaQuery, useTheme} from '@mui/material';
+
 import {useAppSelector} from 'src/store/helpers/hooks/useAppSelector';
 import {selectContacts} from 'src/store/reducers/contact/contactSelectors';
 import Chat from 'src/components/Messenger/parts/Chat/Chat';

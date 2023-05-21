@@ -16,6 +16,10 @@ export const CONTACTS_CONTAINER = {
   height: '97%',
 }
 
+export const CONTACTS_TITLE = {
+  padding: '9px 0'
+}
+
 export const TAB = {
   padding: 0,
   opacity: 1,

@@ -4,14 +4,6 @@ import {IChat} from 'src/models/IChat';
 import {INotification, MessageDataType, WebhookType} from 'src/models/INotification';
 import {IMessage, MessageOwnership} from 'src/models/IMessage';
 
-interface IChatState {
-  chats: IChat[]
-}
-
-const initialState: IChatState = {
-  chats: []
-}
-
 const createMessage = (state: IChatState, data: INotification, sender: MessageOwnership) => {
   const chatId = data?.body.senderData?.chatId!;
   const chat = state.chats.find(chat => chat.chatId === chatId);
@@ -30,6 +22,14 @@ const createMessage = (state: IChatState, data: INotification, sender: MessageOw
     const newMessage = chat.messages.find(i => i.id === message.id);
     !newMessage && chat.messages.push(message);
   }
+}
+
+interface IChatState {
+  chats: IChat[]
+}
+
+const initialState: IChatState = {
+  chats: []
 }
 
 const ChatSlice = createSlice({

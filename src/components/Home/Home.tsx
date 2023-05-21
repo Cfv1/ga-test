@@ -1,4 +1,5 @@
 import React, {memo} from 'react';
+
 import {useAppSelector} from 'src/store/helpers/hooks/useAppSelector';
 import {selectAccount, selectCommunication} from 'src/store/reducers/account/accountSelectors';
 import {RedirectToLogin} from 'src/components/BaseRoutes/Redirect';

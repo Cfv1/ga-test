@@ -1,7 +1,8 @@
 import React, {memo} from 'react';
-import {Box} from '@mui/material';
-import {IContact} from 'src/models/IContact';
+import {Box, Typography} from '@mui/material';
 import {AccountCircle} from '@mui/icons-material';
+
+import {IContact} from 'src/models/IContact';
 import {AVATAR, CONTACT, CONTACT_ACTIVE, DEFAULT_AVATAR} from './styles';
 
 interface IContactProps {
@@ -17,7 +18,9 @@ const Contact = (props: IContactProps) => {
       <Box sx={AVATAR}>
         <AccountCircle sx={DEFAULT_AVATAR} />
       </Box>
-      {data.name}
+      <Typography variant="body2">
+        {data.name}
+      </Typography>
     </Box>
   )
 }

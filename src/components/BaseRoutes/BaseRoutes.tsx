@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import {Route, Routes} from 'react-router-dom';
+
 import Login from 'src/components/Login/Login';
 import Home from 'src/components/Home/Home';
 import {RedirectToHome} from 'src/components/BaseRoutes/Redirect';

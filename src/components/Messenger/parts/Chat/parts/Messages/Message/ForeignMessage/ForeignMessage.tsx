@@ -1,11 +1,12 @@
 import React, {memo} from 'react';
 import {Box} from '@mui/material';
+
+import {IMessageProps} from '../common/types';
 import {
   CORNER,
   MESSAGE,
   MESSAGE_ROOT
 } from './styles';
-import {IMessageProps} from 'src/components/Messenger/parts/Chat/parts/Messages/Message/common/types';
 
 const ForeignMessage = (props: IMessageProps) => {
   const {text} = props;

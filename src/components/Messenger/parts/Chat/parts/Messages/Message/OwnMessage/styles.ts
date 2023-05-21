@@ -2,7 +2,7 @@ import {
   CORNER_DEFAULT,
   MESSAGE_DEFAULT,
   MESSAGE_ROOT_DEFAULT
-} from 'src/components/Messenger/parts/Chat/parts/Messages/Message/common/styles';
+} from '../common/styles';
 
 const color = '#D9FDD3';
 

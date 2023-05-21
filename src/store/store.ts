@@ -1,13 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
-import MessageSlice from 'src/store/reducers/message/messageSlice';
 import AccountSlice from 'src/store/reducers/account/accountSlice';
 import ContactSlice from 'src/store/reducers/contact/contactSlice';
+import ChatSlice from 'src/store/reducers/chat/chatSlice';
 
 export const store = configureStore({
   reducer: {
-    messageReducer: MessageSlice.reducer,
     accountReducer: AccountSlice.reducer,
-    contactReducer: ContactSlice.reducer
+    contactReducer: ContactSlice.reducer,
+    chatReducer: ChatSlice.reducer,
   },
 });
 

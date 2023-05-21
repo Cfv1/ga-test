@@ -26,7 +26,7 @@ const Contacts = (props: IContactsProps) => {
             orientation="vertical"
             variant="scrollable"
             textColor="inherit"
-            value={currentContactIndex}
+            value={currentContactIndex || false}
             onChange={(event, value) => onSelect(value)}
             sx={CONTACTS_CONTAINER}
             TabIndicatorProps={{style: {backgroundColor: "transparent"}}}

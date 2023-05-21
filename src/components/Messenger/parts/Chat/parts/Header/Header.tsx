@@ -1,16 +1,11 @@
 import React, {memo} from 'react';
 import {Box} from '@mui/material';
 import {AccountCircle} from '@mui/icons-material';
-
-import {IContact} from 'src/models/IContact';
 import {HEADER} from './styles';
 import {AVATAR, DEFAULT_AVATAR} from '../common/styles';
+import {ChatProps} from 'src/components/Messenger/parts/Chat/Chat';
 
-interface IHeaderProps {
-  contact: IContact;
-}
-
-const Header = (props: IHeaderProps) => {
+const Header = (props: ChatProps) => {
   const {contact} = props;
 
   return (

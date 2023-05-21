@@ -6,7 +6,8 @@ export const ABSOLUTE_CONTAINER = {
 
 export const ADD_CONTACT = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
+  textAlign: 'center'
 }
 
 const button_default = {

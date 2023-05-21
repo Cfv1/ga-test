@@ -28,7 +28,7 @@ const AddContactModal = (props: IAddContactModalProps) => {
 
   const setPhoneHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const text = event.target.value;
-    const error = !isForMobilePhone(text) || text.length > 11;
+    const error = !isForMobilePhone(text) || text.length > 11 || text?.[0] !== '7';
     setPhoneError(text.length > 0 ? error : false);
     setPhone(text);
   }

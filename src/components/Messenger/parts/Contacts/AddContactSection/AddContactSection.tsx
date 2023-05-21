@@ -6,7 +6,8 @@ import AddContactModal from 'src/components/Messenger/parts/Contacts/AddContactM
 import {useModal} from 'src/common/helpers/hooks/useModal';
 import {useActions} from 'src/store/helpers/hooks/useActions';
 import {IContactInfo} from 'src/models/IContactInfo';
-import {ADD_CONTACT, BUTTON, BUTTON_SMALL, ABSOLUTE_CONTAINER} from './styles';
+import {ABSOLUTE_CONTAINER, ADD_CONTACT, BUTTON, BUTTON_SMALL} from './styles';
+import {createContactWithId} from 'src/store/helpers/creators/contact';
 
 interface IAddContactSection {
   mode?: 'small' | 'simple';
@@ -15,11 +16,13 @@ interface IAddContactSection {
 const AddContactSection = (props: IAddContactSection) => {
   const {mode = 'simple'} = props;
 
-  const {createContact} = useActions();
+  const {createContact, createChat} = useActions();
   const {open, onOpen, onClose} = useModal();
 
   const onModalSuccess = (data: IContactInfo) => {
-    createContact(data);
+    const contact = createContactWithId(data);
+    createContact(contact);
+    createChat(contact);
     onClose();
   }
 

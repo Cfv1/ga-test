@@ -1,12 +1,19 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {receiveNotification} from 'src/store/services/message';
 import {IChat} from 'src/models/IChat';
 import {INotification, MessageDataType, WebhookType} from 'src/models/INotification';
 import {IMessage, MessageOwnership} from 'src/models/IMessage';
+import {IContact} from 'src/models/IContact';
+import {createContactWithId} from 'src/store/helpers/creators/contact';
+
+const saveMessage = (chat: IChat, message: IMessage) => {
+  const newMessage = chat.messages.find(i => i.id === message.id);
+  !newMessage && chat.messages.push(message);
+}
 
 const createMessage = (state: IChatState, data: INotification, sender: MessageOwnership) => {
-  const chatId = data?.body.senderData?.chatId!;
-  const chat = state.chats.find(chat => chat.chatId === chatId);
+  const chatId = data.body.senderData!.chatId;
+  const chat = state.chats.find(chat => chat.chatId === chatId)!;
   const message: IMessage = {
     id: data.body.idMessage,
     text:
@@ -16,12 +23,7 @@ const createMessage = (state: IChatState, data: INotification, sender: MessageOw
     ownership: sender
   }
 
-  if(!chat) {
-    state.chats.push({chatId, messages: [message]});
-  } else {
-    const newMessage = chat.messages.find(i => i.id === message.id);
-    !newMessage && chat.messages.push(message);
-  }
+  saveMessage(chat, message);
 }
 
 interface IChatState {
@@ -29,14 +31,26 @@ interface IChatState {
 }
 
 const initialState: IChatState = {
-  chats: []
+  chats: [{
+    chatId: createContactWithId({name: 'Vlad', phone: '79234040754'}).chatId,
+    messages: []
+  }]
 }
 
 const ChatSlice = createSlice({
   name: 'chat',
   initialState,
   reducers: {
+    createChat: (state, action: PayloadAction<IContact>) => {
+      const data = action.payload;
+      const chat: IChat = {
+        chatId: data.chatId,
+        messages: []
+      }
+      state.chats.push(chat);
+    }
   },
+
   extraReducers: (builder) => {
     builder.addCase(receiveNotification.fulfilled, (state, action) => {
       const data = action.payload;

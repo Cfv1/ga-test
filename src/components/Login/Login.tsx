@@ -14,6 +14,7 @@ import {FORM, LOGIN_BUTTON} from './styles';
 const Login = () => {
   const [idInstance, setIdInstance] = useState('');
   const [apiTokenInstance, setApiTokenInstance] = useState('');
+
   const navigate = useNavigate();
   const communication = useAppSelector(selectCommunication);
 
@@ -33,6 +34,8 @@ const Login = () => {
 
   useSuccessCommunication(communication, () => navigate('/'));
   useErrorCommunication(communication);
+
+  const isDisabledButton = idInstance.length === 0 || apiTokenInstance.length === 0;
 
   return (
     <BaseLayout>
@@ -57,7 +60,7 @@ const Login = () => {
             onChange={setApiTokenInstanceHandler}
           />
 
-          <Button variant="contained" sx={LOGIN_BUTTON} onClick={onAuthorize}>
+          <Button variant="contained" disabled={isDisabledButton} sx={LOGIN_BUTTON} onClick={onAuthorize}>
             Войти
           </Button>
         </Stack>

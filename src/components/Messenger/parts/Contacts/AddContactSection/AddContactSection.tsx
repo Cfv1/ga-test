@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useCallback} from 'react';
 import {Box, IconButton, Stack} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -19,12 +19,12 @@ const AddContactSection = (props: IAddContactSection) => {
   const {createContact, createChat} = useActions();
   const {open, onOpen, onClose} = useModal();
 
-  const onModalSuccess = (data: IContactInfo) => {
+  const onModalSuccess = useCallback((data: IContactInfo) => {
     const contact = createContactWithId(data);
     createContact(contact);
     createChat(contact);
     onClose();
-  }
+  }, [createChat, createContact, onClose])
 
   const isSmall = mode === 'small';
 
